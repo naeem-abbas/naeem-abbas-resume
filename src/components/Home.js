@@ -24,7 +24,7 @@ export default class Home extends Component {
                                 <li className="phone"><i className="fas fa-phone"></i><a href="tel:0123 456 789">(92) 348-3460275</a></li>
                                 {/* <li className="website"><Link onClick={() => { window.open('https://naeemabbas7247.github.io/online_resume/') }}>https://naeemabbas7247.github.io/online_resume/</Link></li> */}
                                 <li className="linkedin"><i className="fab fa-linkedin-in"></i><Link onClick={() => { window.open('https://www.linkedin.com/in/naeem-abbas') }}>linkedin.com/in/naeem-abbas</Link></li>
-                                <li className="github"><i className="fab fa-github"></i><Link onClick={() => { window.open("https://www.github.com/naeemabbas7247") }}>github.com/naeemabbas7247</Link></li>
+                                <li className="github"><i className="fab fa-github"></i><Link onClick={() => { window.open("https://www.github.com/naeem-abbas") }}>github.com/naeem-abbas</Link></li>
                                 {/* <li className="twitter"><i className="fab fa-twitter"></i><a href="https://twitter.com/3rdwave_themes" target="_blank">@twittername</a></li> */}
                             </ul>
                         </div>
