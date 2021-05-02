@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/naeem-abbas-resume/static/js/main.21142d3a.chunk.js",
+    "main.js.map": "/naeem-abbas-resume/static/js/main.21142d3a.chunk.js.map",
+    "runtime-main.js": "/naeem-abbas-resume/static/js/runtime-main.ed30fc2b.js",
+    "runtime-main.js.map": "/naeem-abbas-resume/static/js/runtime-main.ed30fc2b.js.map",
+    "static/js/2.2c15ef4f.chunk.js": "/naeem-abbas-resume/static/js/2.2c15ef4f.chunk.js",
+    "static/js/2.2c15ef4f.chunk.js.map": "/naeem-abbas-resume/static/js/2.2c15ef4f.chunk.js.map",
+    "static/js/3.21727562.chunk.js": "/naeem-abbas-resume/static/js/3.21727562.chunk.js",
+    "static/js/3.21727562.chunk.js.map": "/naeem-abbas-resume/static/js/3.21727562.chunk.js.map",
+    "index.html": "/naeem-abbas-resume/index.html",
+    "static/js/2.2c15ef4f.chunk.js.LICENSE.txt": "/naeem-abbas-resume/static/js/2.2c15ef4f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ed30fc2b.js",
+    "static/js/2.2c15ef4f.chunk.js",
+    "static/js/main.21142d3a.chunk.js"
+  ]
+}
