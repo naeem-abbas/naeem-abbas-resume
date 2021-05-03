@@ -1,19 +1,28 @@
 {
   "files": {
-    "main.js": "/naeem-abbas-resume/static/js/main.5490ad21.chunk.js",
-    "main.js.map": "/naeem-abbas-resume/static/js/main.5490ad21.chunk.js.map",
-    "runtime-main.js": "/naeem-abbas-resume/static/js/runtime-main.ed30fc2b.js",
-    "runtime-main.js.map": "/naeem-abbas-resume/static/js/runtime-main.ed30fc2b.js.map",
-    "static/js/2.2c15ef4f.chunk.js": "/naeem-abbas-resume/static/js/2.2c15ef4f.chunk.js",
-    "static/js/2.2c15ef4f.chunk.js.map": "/naeem-abbas-resume/static/js/2.2c15ef4f.chunk.js.map",
-    "static/js/3.21727562.chunk.js": "/naeem-abbas-resume/static/js/3.21727562.chunk.js",
-    "static/js/3.21727562.chunk.js.map": "/naeem-abbas-resume/static/js/3.21727562.chunk.js.map",
+    "main.js": "/naeem-abbas-resume/static/js/main.219745f6.chunk.js",
+    "main.js.map": "/naeem-abbas-resume/static/js/main.219745f6.chunk.js.map",
+    "runtime-main.js": "/naeem-abbas-resume/static/js/runtime-main.8c194cf8.js",
+    "runtime-main.js.map": "/naeem-abbas-resume/static/js/runtime-main.8c194cf8.js.map",
+    "static/js/2.6164e4dc.chunk.js": "/naeem-abbas-resume/static/js/2.6164e4dc.chunk.js",
+    "static/js/2.6164e4dc.chunk.js.map": "/naeem-abbas-resume/static/js/2.6164e4dc.chunk.js.map",
+    "static/js/3.a65fa38a.chunk.js": "/naeem-abbas-resume/static/js/3.a65fa38a.chunk.js",
+    "static/js/3.a65fa38a.chunk.js.map": "/naeem-abbas-resume/static/js/3.a65fa38a.chunk.js.map",
+    "static/js/4.dcc2debc.chunk.js": "/naeem-abbas-resume/static/js/4.dcc2debc.chunk.js",
+    "static/js/4.dcc2debc.chunk.js.map": "/naeem-abbas-resume/static/js/4.dcc2debc.chunk.js.map",
+    "static/js/5.795d7810.chunk.js": "/naeem-abbas-resume/static/js/5.795d7810.chunk.js",
+    "static/js/5.795d7810.chunk.js.map": "/naeem-abbas-resume/static/js/5.795d7810.chunk.js.map",
+    "static/js/6.1ca7ecb9.chunk.js": "/naeem-abbas-resume/static/js/6.1ca7ecb9.chunk.js",
+    "static/js/6.1ca7ecb9.chunk.js.map": "/naeem-abbas-resume/static/js/6.1ca7ecb9.chunk.js.map",
     "index.html": "/naeem-abbas-resume/index.html",
-    "static/js/2.2c15ef4f.chunk.js.LICENSE.txt": "/naeem-abbas-resume/static/js/2.2c15ef4f.chunk.js.LICENSE.txt"
+    "static/js/2.6164e4dc.chunk.js.LICENSE.txt": "/naeem-abbas-resume/static/js/2.6164e4dc.chunk.js.LICENSE.txt",
+    "static/js/3.a65fa38a.chunk.js.LICENSE.txt": "/naeem-abbas-resume/static/js/3.a65fa38a.chunk.js.LICENSE.txt",
+    "static/js/4.dcc2debc.chunk.js.LICENSE.txt": "/naeem-abbas-resume/static/js/4.dcc2debc.chunk.js.LICENSE.txt",
+    "static/js/5.795d7810.chunk.js.LICENSE.txt": "/naeem-abbas-resume/static/js/5.795d7810.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.ed30fc2b.js",
-    "static/js/2.2c15ef4f.chunk.js",
-    "static/js/main.5490ad21.chunk.js"
+    "static/js/runtime-main.8c194cf8.js",
+    "static/js/3.a65fa38a.chunk.js",
+    "static/js/main.219745f6.chunk.js"
   ]
 }
