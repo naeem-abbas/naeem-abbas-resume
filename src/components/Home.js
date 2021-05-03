@@ -6,11 +6,31 @@ import {
     Link,
     Redirect
 } from "react-router-dom";
+import { jsPDF } from "jspdf";
 export default class Home extends Component {
+    constructor(props){
+        super(props);
+        this.resumeRef = React.createRef();
+    }
+    DownloadResume(){
+        var doc = new jsPDF("landscape","pt","a4");
+        doc.html(document.querySelector("#toPdf"),{
+            callback:function(pdf){
+                pdf.save("Hello.pdf");
+            }
+        });
+     
+    }
+    componentDidMount(){
+        console.log("The html is"+this.resumeRef.current);
+    }
     render() {
         return (
             <div>
-                <div className="wrapper">
+             <div style={{textAlign:'center',marginTop:20}}>
+             <button className="btn btn-success" onClick={()=>{this.DownloadResume()}}>Download Resume</button>
+             </div>
+                <div className="wrapper" id="toPdf">
                     <div className="sidebar-wrapper">
                         <div className="profile-container">
                             <img className="profile" src="https://naeem-abbas.github.io/naeem-abbas-resume/assets/images/profile.png" alt="" style={{ width: 150, height: 170,borderRadius:'50%' }} />
