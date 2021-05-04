@@ -28,9 +28,9 @@ export default class Home extends Component {
         return (
             <div>
              <div style={{textAlign:'center',marginTop:20}}>
-             <button className="btn btn-success" onClick={()=>{this.DownloadResume()}}>Download Resume</button>
+             <button className="btn btn-success" >Download Resume</button>
              </div>
-                <div className="wrapper" id="toPdf">
+                <div className="wrapper"  id="toPdf">
                     <div className="sidebar-wrapper">
                         <div className="profile-container">
                             <img className="profile" src="https://naeem-abbas.github.io/naeem-abbas-resume/assets/images/profile.png" alt="" style={{ width: 150, height: 170,borderRadius:'50%' }} />
@@ -40,11 +40,11 @@ export default class Home extends Component {
 
                         <div className="contact-container container-block">
                             <ul className="list-unstyled contact-list">
-                                <li className="email"><i className="fas fa-envelope"></i><Link to="/">naeemabbas7247@gmail.com</Link></li>
-                                <li className="phone"><i className="fas fa-phone"></i><a href="tel:0123 456 789">(92) 348-3460275</a></li>
+                                <li className="email"><i className="fas fa-envelope"></i><Link to="/"> naeemabbas7247@gmail.com</Link></li>
+                                <li className="phone"><i className="fas fa-phone"></i><a href="tel:0123 456 789"> (92) 348-3460275</a></li>
                                 {/* <li className="website"><Link onClick={() => { window.open('https://naeemabbas7247.github.io/online_resume/') }}>https://naeemabbas7247.github.io/online_resume/</Link></li> */}
-                                <li className="linkedin"><i className="fab fa-linkedin-in"></i><Link onClick={() => { window.open('https://www.linkedin.com/in/naeem-abbas') }}>linkedin.com/in/naeem-abbas</Link></li>
-                                <li className="github"><i className="fab fa-github"></i><Link onClick={() => { window.open("https://www.github.com/naeem-abbas") }}>github.com/naeem-abbas</Link></li>
+                                <li className="linkedin"><i className="fab fa-linkedin-in"></i><Link onClick={() => { window.open('https://www.linkedin.com/in/naeem-abbas') }}> linkedin.com/in/naeem-abbas</Link></li>
+                                <li className="github"><i className="fab fa-github"></i><Link onClick={() => { window.open("https://www.github.com/naeem-abbas") }}> github.com/naeem-abbas</Link></li>
                                 {/* <li className="twitter"><i className="fab fa-twitter"></i><a href="https://twitter.com/3rdwave_themes" target="_blank">@twittername</a></li> */}
                             </ul>
                         </div>
@@ -93,7 +93,7 @@ export default class Home extends Component {
                     <div className="main-wrapper">
 
                         <section className="section summary-section">
-                            <h2 className="section-title"><span className="icon-holder"><i className="fas fa-user"></i></span>Summary</h2>
+                            <h2 className="section-title"><span className="icon-holder"><i className="fas fa-user" style={{marginTop:7}}></i></span>Summary</h2>
                             <div className="summary">
                                 <p>
                                     Seeking a position of Software Engineer in a reputable organization to utilize my
@@ -149,7 +149,7 @@ export default class Home extends Component {
                         </section> */}
 
                         <section className="section projects-section">
-                            <h2 className="section-title"><span className="icon-holder"><i className="fas fa-archive"></i></span>Projects</h2>
+                            <h2 className="section-title"><span className="icon-holder"><i className="fas fa-archive" style={{marginTop:8}}></i></span>Projects</h2>
                             {/* <div className="intro">
                                 <p>Here is my awesome projects that is developed by me </p>
                             </div> */}
@@ -203,7 +203,7 @@ export default class Home extends Component {
 
                         <section className="skills-section section">
                             <h2 className="section-title">
-                                <span className="icon-holder"><i className="fas fa-rocket"></i></span>Skills</h2>
+                                <span className="icon-holder"><i className="fas fa-rocket" style={{marginTop:8}}></i></span>Skills</h2>
                             <div className="skillset">
                                 <div className="item">
                                     <ul className="skillslist">
@@ -305,7 +305,7 @@ export default class Home extends Component {
 
                         <section className="skills-section section">
                             <h2 className="section-title">
-                                <span className="icon-holder"><i className="fas fa-tools"></i></span>Tools</h2>
+                                <span className="icon-holder"><i className="fas fa-tools" style={{marginTop:8}}></i></span>Tools</h2>
                             <div className="skillset">
                                 <div className="item">
                                     <ul className="skillslist">
