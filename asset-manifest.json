@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/naeem-abbas-resume/static/js/main.219745f6.chunk.js",
-    "main.js.map": "/naeem-abbas-resume/static/js/main.219745f6.chunk.js.map",
+    "main.js": "/naeem-abbas-resume/static/js/main.91a23098.chunk.js",
+    "main.js.map": "/naeem-abbas-resume/static/js/main.91a23098.chunk.js.map",
     "runtime-main.js": "/naeem-abbas-resume/static/js/runtime-main.8c194cf8.js",
     "runtime-main.js.map": "/naeem-abbas-resume/static/js/runtime-main.8c194cf8.js.map",
     "static/js/2.6164e4dc.chunk.js": "/naeem-abbas-resume/static/js/2.6164e4dc.chunk.js",
@@ -23,6 +23,6 @@
   "entrypoints": [
     "static/js/runtime-main.8c194cf8.js",
     "static/js/3.a65fa38a.chunk.js",
-    "static/js/main.219745f6.chunk.js"
+    "static/js/main.91a23098.chunk.js"
   ]
 }
