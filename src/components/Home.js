@@ -7,12 +7,16 @@ import {
     Redirect
 } from "react-router-dom";
 import { jsPDF } from "jspdf";
+import {db} from './Firebase';
+import firebase from 'firebase';
 export default class Home extends Component {
     constructor(props){
         super(props);
-        this.resumeRef = React.createRef();
+        this.state={
+            userSkills:[]
+        }
     }
-    DownloadResume(){
+    DownloadResumes(){
         var doc = new jsPDF("landscape","pt","a4");
         doc.html(document.querySelector("#toPdf"),{
             callback:function(pdf){
@@ -22,13 +26,21 @@ export default class Home extends Component {
      
     }
     componentDidMount(){
-        console.log("The html is"+this.resumeRef.current);
+        db.collection("UserSkills").orderBy("id","asc")
+        .get()
+        .then(querySnapshot => {
+          const data = querySnapshot.docs.map(doc => doc.data());
+          this.setState({userSkills:data});          
+         // console.log(data); // array of cities objects
+        }).catch(err=>{
+          console.log("Something went wrong"+err);
+        });
     }
     render() {
         return (
             <div>
              <div style={{textAlign:'center',marginTop:20}}>
-             <button className="btn btn-success" >Download Resume</button>
+             {/* <button className="btn btn-success">Download Resume</button> */}
              </div>
                 <div className="wrapper"  id="toPdf">
                     <div className="sidebar-wrapper">
@@ -40,11 +52,27 @@ export default class Home extends Component {
 
                         <div className="contact-container container-block">
                             <ul className="list-unstyled contact-list">
-                                <li className="email"><i className="fas fa-envelope"></i><Link to="/"> naeemabbas7247@gmail.com</Link></li>
-                                <li className="phone"><i className="fas fa-phone"></i><a href="tel:0123 456 789"> (92) 348-3460275</a></li>
+                                <li className="email">
+                                    <i className="fas fa-envelope">
+                                </i>
+                                <Link to="/"> naeemabbas7247@gmail.com</Link>
+                                </li>
+                                <li className="phone">
+                                    <i className="fas fa-phone">
+                                </i>
+                                <a href="tel:0123 456 789"> (92) 348-3460275</a>
+                                </li>
                                 {/* <li className="website"><Link onClick={() => { window.open('https://naeemabbas7247.github.io/online_resume/') }}>https://naeemabbas7247.github.io/online_resume/</Link></li> */}
-                                <li className="linkedin"><i className="fab fa-linkedin-in"></i><Link onClick={() => { window.open('https://www.linkedin.com/in/naeem-abbas') }}> linkedin.com/in/naeem-abbas</Link></li>
-                                <li className="github"><i className="fab fa-github"></i><Link onClick={() => { window.open("https://www.github.com/naeem-abbas") }}> github.com/naeem-abbas</Link></li>
+                                <li className="linkedin">
+                                    <i className="fab fa-linkedin-in"></i>
+                                    <Link to="" onClick={() => { window.open('https://www.linkedin.com/in/naeem-abbas') }}> 
+                                    {' '}linkedin.com/in/naeem-abbas</Link>
+                                </li>
+                                <li className="github">
+                                    <i className="fab fa-github"></i>
+                                    <Link to="" onClick={() => { window.open("https://www.github.com/naeem-abbas") }}>
+                                    {' '}
+                                    github.com/naeem-abbas</Link></li>
                                 {/* <li className="twitter"><i className="fab fa-twitter"></i><a href="https://twitter.com/3rdwave_themes" target="_blank">@twittername</a></li> */}
                             </ul>
                         </div>
@@ -207,7 +235,15 @@ export default class Home extends Component {
                             <div className="skillset">
                                 <div className="item">
                                     <ul className="skillslist">
-                                        <li>
+                                        {
+                                            this.state.userSkills?
+                                            this.state.userSkills.map((item,i)=>(
+                                                <li key={i}>{item.skill_desc}</li>
+                                            ))
+                                            :
+                                            "Data is not here"
+                                        }
+                                        {/* <li>
                                           MySQL  / MongoDB
                                         </li>
                                         <li>
@@ -257,7 +293,7 @@ export default class Home extends Component {
                                         </li>
                                         <li>
                                             Java (Swing, JavaFX)
-                                        </li>
+                                        </li> */}
                                     </ul>
                                     {/* <div className="progress level-bar">
                                         <div className="progress-bar theme-progress-bar" role="progressbar" style={{ width: '98%' }}></div>
@@ -397,7 +433,7 @@ export default class Home extends Component {
 
                 <footer className="footer">
                     <div className="text-center">
-
+                        <p>This application is created in React JS by Naeem Abbas</p>
                         {/* <small className="copyright">Designed with <i className="fas fa-heart"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small> */}
                     </div>
                 </footer>
