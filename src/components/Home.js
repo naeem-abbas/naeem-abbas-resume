@@ -1,132 +1,167 @@
 import React, { Component } from 'react';
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
     Link,
-    Redirect
 } from "react-router-dom";
-import { jsPDF } from "jspdf";
-import {db} from './Firebase';
-import firebase from 'firebase';
+import { db } from './Firebase';
 export default class Home extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state={
-            userSkills:[]
+        this.state = {
+            userSkills: [],
+            userSummery: '',
+            userEducation: [],
+            userTools: [],
+            userProjects: [],
+            usersProfile:{}
         }
     }
-    DownloadResumes(){
-        var doc = new jsPDF("landscape","pt","a4");
-        doc.html(document.querySelector("#toPdf"),{
-            callback:function(pdf){
-                pdf.save("Hello.pdf");
-            }
-        });
-     
+    GetUserSkills() {
+        db.collection("UserSkills").orderBy("id", "asc")
+            .get()
+            .then(querySnapshot => {
+                const data = querySnapshot.docs.map(doc => doc.data());
+                this.setState({ userSkills: data });
+                // console.log(data); // array of cities objects
+            }).catch(err => {
+                console.log("Something went wrong" + err);
+            });
     }
-    componentDidMount(){
-        db.collection("UserSkills").orderBy("id","asc")
-        .get()
-        .then(querySnapshot => {
-          const data = querySnapshot.docs.map(doc => doc.data());
-          this.setState({userSkills:data});          
-         // console.log(data); // array of cities objects
-        }).catch(err=>{
-          console.log("Something went wrong"+err);
-        });
+    GetUserSummary() {
+        db.collection("UserSummary").orderBy("id", "asc").limit(1)
+            .get()
+            .then(querySnapshot => {
+                const data = querySnapshot.docs.map(doc => doc.data());
+                this.setState({ userSummery: data[0].summary })
+            }).catch(err => {
+                console.log("Something went wrong" + err);
+            });
+    }
+
+    GetUserEducation() {
+        db.collection("UserEducation").orderBy("id", "asc")
+            .get()
+            .then(querySnapshot => {
+                const data = querySnapshot.docs.map(doc => doc.data());
+                this.setState({ userEducation: data });
+                // console.log(data); // array of cities objects
+            }).catch(err => {
+                console.log("Something went wrong" + err);
+            });
+    }
+    GetUserTools() {
+        db.collection("UserTools").orderBy("id", "asc")
+            .get()
+            .then(querySnapshot => {
+                const data = querySnapshot.docs.map(doc => doc.data());
+                this.setState({ userTools: data });
+                // console.log(data); // array of cities objects
+            }).catch(err => {
+                console.log("Something went wrong" + err);
+            });
+    }
+    GetUserProjects() {
+        db.collection("UserProjects").orderBy("id", "asc")
+            .get()
+            .then(querySnapshot => {
+                const data = querySnapshot.docs.map(doc => doc.data());
+                this.setState({ userProjects: data });
+                // console.log(data); // array of cities objects
+            }).catch(err => {
+                console.log("Something went wrong" + err);
+            });
+    }
+    
+    GetUsers() {
+        db.collection("Users").orderBy("id", "asc").limit(1)
+            .get()
+            .then(querySnapshot => {
+                const data = querySnapshot.docs.map(doc => doc.data());
+                this.setState({ usersProfile: data[0] });
+                // console.log(data); // array of cities objects
+            }).catch(err => {
+                console.log("Something went wrong" + err);
+            });
+    }
+
+    componentDidMount() {
+        this.GetUserSkills();
+        this.GetUserSummary();
+        this.GetUserEducation();
+        this.GetUserTools();
+        this.GetUserProjects();
+        this.GetUsers();
     }
     render() {
         return (
             <div>
-             <div style={{textAlign:'center',marginTop:20}}>
-             {/* <button className="btn btn-success">Download Resume</button> */}
-             </div>
-                <div className="wrapper"  id="toPdf">
+                <div style={{ textAlign: 'center', marginTop: 20 }}>
+                    {/* <button className="btn btn-success">Download Resume</button> */}
+                </div>
+                <div className="wrapper" id="toPdf">
                     <div className="sidebar-wrapper">
                         <div className="profile-container">
-                            <img className="profile" src="https://naeem-abbas.github.io/naeem-abbas-resume/assets/images/profile.png" alt="" style={{ width: 150, height: 170,borderRadius:'50%' }} />
+                            <img className="profile" src={this.state.usersProfile?this.state.usersProfile.profile_img:"https://naeem-abbas.github.io/naeem-abbas-resume/assets/images/profile.png"} alt="" style={{ width: 150, height: 170, borderRadius: '50%' }} />
                             <h1 className="name">Naeem Abbas</h1>
-                            <h3 className="tagline">Full Stack JavaScript Developer</h3>
+                            <h3 className="tagline">{this.state.usersProfile?this.state.usersProfile.story_line:"Full Stack JavaScript Web & Mobile App Developer"}</h3>
                         </div>
 
                         <div className="contact-container container-block">
                             <ul className="list-unstyled contact-list">
                                 <li className="email">
                                     <i className="fas fa-envelope">
-                                </i>
-                                <Link to="/"> naeemabbas7247@gmail.com</Link>
+                                    </i>
+                                    <Link to="/"> naeemabbas7247@gmail.com</Link>
                                 </li>
                                 <li className="phone">
                                     <i className="fas fa-phone">
-                                </i>
-                                <a href="tel:0123 456 789"> (92) 348-3460275</a>
+                                    </i>
+                                    <a href="tel:0123 456 789"> (92) 348-3460275</a>
                                 </li>
                                 {/* <li className="website"><Link onClick={() => { window.open('https://naeemabbas7247.github.io/online_resume/') }}>https://naeemabbas7247.github.io/online_resume/</Link></li> */}
                                 <li className="linkedin">
                                     <i className="fab fa-linkedin-in"></i>
-                                    <Link to="" onClick={() => { window.open('https://www.linkedin.com/in/naeem-abbas') }}> 
-                                    {' '}linkedin.com/in/naeem-abbas</Link>
+                                    <Link to="" onClick={() => { window.open('https://www.linkedin.com/in/naeem-abbas') }}>
+                                        {' '}linkedin.com/in/naeem-abbas</Link>
                                 </li>
                                 <li className="github">
                                     <i className="fab fa-github"></i>
                                     <Link to="" onClick={() => { window.open("https://www.github.com/naeem-abbas") }}>
-                                    {' '}
+                                        {' '}
                                     github.com/naeem-abbas</Link></li>
                                 {/* <li className="twitter"><i className="fab fa-twitter"></i><a href="https://twitter.com/3rdwave_themes" target="_blank">@twittername</a></li> */}
                             </ul>
                         </div>
                         <div className="education-container container-block">
                             <h2 className="container-block-title">Education</h2>
-                            <div className="item">
-                                <h4 className="degree">BS Computer Science</h4>
-                                <h5 className="meta">Institute of Southern Punjab Multan</h5>
-                                <div className="time">2016 - 2020</div>
-                                <div className="time">Scored : 3.65 out of 4.0</div>
-                            </div>
-                            <div className="item">
-                                <h4 className="degree">ICS</h4>
-                                <h5 className="meta">BISE DG Khan</h5>
-                                <div className="time">2013 - 2015</div>
-                                <div className="time">Scored : 68.85%</div>
-                            </div>
-                            <div className="item">
-                                <h4 className="degree">Matric</h4>
-                                <h5 className="meta">BISE DG Khan</h5>
-                                <div className="time">2011 - 2013</div>
-                                <div className="time">Scored : 76.76%</div>
-                            </div>
+                            {
+                                this.state.userEducation ?
+                                    this.state.userEducation.map((item, i) => (
+                                        <div key={i} className="item">
+                                            <h4 className="degree">{item.degree_title}</h4>
+                                            <h5 className="meta">{item.institute}</h5>
+                                            <div className="time">{item.duration_date}</div>
+                                            <div className="time">Scored: {item.scored}</div>
+                                        </div>
+                                    ))
+                                    :
+                                    <div className="item">
+                                        <div className="degree">Please add your education</div>
+                                    </div>
+                            }
+                           
                         </div>
 
-                        {/* <div className="languages-container container-block">
-                            <h2 className="container-block-title">Languages</h2>
-                            <ul className="list-unstyled interests-list">
-                                <li>English <span className="lang-desc">(Native)</span></li>
-                                <li>French <span className="lang-desc">(Professional)</span></li>
-                                <li>Spanish <span className="lang-desc">(Professional)</span></li>
-                            </ul>
-                        </div> */}
-
-                        {/* <div className="interests-container container-block">
-                            <h2 className="container-block-title">Skills</h2>
-                            <ul className="list-unstyled interests-list">
-                                <li>MySQL / MongoDb</li>
-                                <li>Express.js</li>
-                                <li>React.js</li>
-                            </ul>
-                        </div> */}
+                     
 
                     </div>
 
                     <div className="main-wrapper">
 
                         <section className="section summary-section">
-                            <h2 className="section-title"><span className="icon-holder"><i className="fas fa-user" style={{marginTop:7}}></i></span>Summary</h2>
+                            <h2 className="section-title"><span className="icon-holder"><i className="fas fa-user" style={{ marginTop: 7 }}></i></span>Summary</h2>
                             <div className="summary">
-                                <p>
-                                    Seeking a position of Software Engineer in a reputable organization to utilize my
-                                    skills for the growth of the organization as well as to enhance my knowledge
-                                    about new and emerging trends in the software development industry.
+                                <p  style={{textAlign:'justify'}}>
+                                    {this.state.userSummery ? this.state.userSummery : ""}
                                 </p>
                             </div>
                         </section>
@@ -177,163 +212,45 @@ export default class Home extends Component {
                         </section> */}
 
                         <section className="section projects-section">
-                            <h2 className="section-title"><span className="icon-holder"><i className="fas fa-archive" style={{marginTop:8}}></i></span>Projects</h2>
-                            {/* <div className="intro">
-                                <p>Here is my awesome projects that is developed by me </p>
-                            </div> */}
-                            <div className="item">
-                                <span className="project-title">Transport Management System</span> - <span className="project-tagline">
-                                    The project was developed as a
-                                    web application of ISP Transport management system for Client using
-                                    PHP (Client Project).
-                                </span>
+                            <h2 className="section-title"><span className="icon-holder"><i className="fas fa-archive" style={{ marginTop: 8 }}></i></span>Projects</h2>
+                           
+                            {
+                                this.state.userProjects ?
+                                    this.state.userProjects.map((item,i)=>(
+                                    <div className="item" key={i}>
+                                        <span className="project-title">{item.project_title}</span> - <span className="project-tagline">
+                                            {item.project_desc}
+                                        </span>
+                                    </div>
+                                    ))
+                                    :
+                                    <div className="item">
+                                        <span className="project-title">Please add your project first</span>
 
-                            </div>
-                            <div className="item">
-                                <span className="project-title">
-                                    Timetable Management System
-                                    </span> - <span className="project-tagline">
-                                    The
-                                    project was developed as a web application of Timetable management
-                                    system for ISP using ASP.NET MVC (Final Year Project).
+                                    </div>
+                            }
 
-                                    </span>
-                            </div>
-
-                            <div className="item">
-                                <span className="project-title">
-                                    Inventory Management System
-                                </span> -
-                                <span className="project-tagline">
-                                    The project was developed as a
-                                    desktop application of Inventory management system for ISP using C#
-                                (Seventh Semester).</span>
-                            </div>
-
-                            <div className="item">
-                                <span className="project-title">
-                                    E-commerce
-                            </span> - <span className="project-tagline">
-                                    e The project was developed as a web application of
-                                    E-commerce for ISP using PHP (Sixth Semester).
-                               </span>
-                            </div>
-                            <div className="item">
-                                <span className="project-title">Fee Report Management System </span> -
-                            <span className="project-tagline">
-                                    The project was developed as a
-                                    desktop application of Fee report management system for ISP using Java
-                                    (Fifth Semester).
-
-                            </span>
-                            </div>
                         </section>
 
                         <section className="skills-section section">
                             <h2 className="section-title">
-                                <span className="icon-holder"><i className="fas fa-rocket" style={{marginTop:8}}></i></span>Skills</h2>
+                                <span className="icon-holder"><i className="fas fa-rocket" style={{ marginTop: 8 }}></i></span>Skills</h2>
                             <div className="skillset">
                                 <div className="item">
                                     <ul className="skillslist">
                                         {
-                                            this.state.userSkills?
-                                            this.state.userSkills.map((item,i)=>(
-                                                <li key={i}>{item.skill_desc}</li>
-                                            ))
-                                            :
-                                            "Data is not here"
+                                            this.state.userSkills ?
+                                                this.state.userSkills.map((item, i) => (
+                                                    <li key={i}>{item.skill_desc}</li>
+                                                ))
+                                                :
+                                                <li>Please add your skills first</li>
                                         }
-                                        {/* <li>
-                                          MySQL  / MongoDB
-                                        </li>
-                                        <li>
-                                            Express.js
-                                        </li>
-                                        <li>
-                                            Angular 9+
-                                        </li>
-                                        <li>
-                                            React.js
-                                        </li>
-                                        <li>
-                                           React Native
-                                        </li>
-                                        <li>
-                                            Node.js
-                                        </li>
-                                        <li>
-                                            ASP.NET MVC (C#)
-                                        </li>
-                                        <li>
-                                            ASP.NET WEB API
-                                        </li>
-                                        <li>
-                                            C#
-                                        </li>
-                                        <li>
-                                            HTML
-                                        </li>
-                                        <li>
-                                            CSS
-                                        </li>
-                                        <li>
-                                            Bootstrap
-                                        </li>
-                                        <li>
-                                            JavaScript
-                                        </li>
-                                        <li>
-                                            jQuery
-                                        </li>
-                                        <li>
-                                           AJAX
-                                        </li>
-                                        <li>
-                                            PHP
-                                        </li>
-                                        <li>
-                                            Java (Swing, JavaFX)
-                                        </li> */}
                                     </ul>
-                                    {/* <div className="progress level-bar">
-                                        <div className="progress-bar theme-progress-bar" role="progressbar" style={{ width: '98%' }}></div>
-                                    </div> */}
+                                   
                                 </div>
 
-                                {/* <div className="item">
-                                    <h3 className="level-title">Javascript &amp; jQuery</h3>
-                                    <div className="progress level-bar">
-                                        <div className="progress-bar theme-progress-bar" role="progressbar" style={{ width: '98%' }}></div>
-                                    </div>
-                                </div>
-
-                                <div className="item">
-                                    <h3 className="level-title">Angular</h3>
-                                    <div className="progress level-bar">
-                                        <div className="progress-bar theme-progress-bar" role="progressbar" style={{ width: '95%' }}></div>
-                                    </div>
-                                </div>
-
-                                <div className="item">
-                                    <h3 className="level-title">HTML5 &amp; CSS</h3>
-                                    <div className="progress level-bar">
-                                        <div className="progress-bar theme-progress-bar" role="progressbar" style={{ width: '98%' }}></div>
-                                    </div>
-                                </div>
-
-                                <div className="item">
-                                    <h3 className="level-title">Ruby on Rails</h3>
-                                    <div className="progress level-bar">
-                                        <div className="progress-bar theme-progress-bar" role="progressbar" style={{ width: '85%' }}></div>
-                                    </div>
-                                </div>
-
-                                <div className="item">
-                                    <h3 className="level-title">Sketch &amp; Photoshop</h3>
-                                    <div className="progress level-bar">
-                                        <div className="progress-bar theme-progress-bar" role="progressbar" style={{ width: '66%' }}></div>
-                                    </div>
-                                </div> */}
+                                
 
                             </div>
                         </section>
@@ -341,91 +258,26 @@ export default class Home extends Component {
 
                         <section className="skills-section section">
                             <h2 className="section-title">
-                                <span className="icon-holder"><i className="fas fa-tools" style={{marginTop:8}}></i></span>Tools</h2>
+                                <span className="icon-holder"><i className="fas fa-tools" style={{ marginTop: 8 }}></i></span>Tools</h2>
                             <div className="skillset">
                                 <div className="item">
                                     <ul className="skillslist">
-                                        <li>
-                                        Microsoft Visual Studio 2019
 
-                                        </li>
-                                        <li>
-                                        MS SQL Server 2019
-                                        </li>
-                                        <li>
-                                        Visual Studio Code
-                                        </li>
-                                        
-                                        <li>
-                                        Robo 3T
-                                        </li>
-                                        <li>
-                                        Android Studio
-                                        </li>
-                                        <li>
-                                        GitHub
-                                        </li>
-                                        <li>
-                                         Bitbucket
-                                        </li>
-                                        <li>
-                                        Heroku
-                                        </li>
-                                        <li>
-                                        Adobe Dreamweaver
-                                        </li>
-                                        <li>
-                                        XAMPP
-                                        </li>
-                                        <li>
-                                        NET Beans 8.2
-                                        </li>
-                                        <li>
-                                        Scene Builder
-                                        </li>
-                                      
-                                        
+                                        {
+                                            this.state.userTools ?
+                                                this.state.userTools.map((item, i) => (
+                                                    <li key={i}>{item.tool_desc}</li>
+                                                ))
+                                                :
+                                                <li>Please add your skills first</li>
+                                        }
+
+
                                     </ul>
-                                    {/* <div className="progress level-bar">
-                                        <div className="progress-bar theme-progress-bar" role="progressbar" style={{ width: '98%' }}></div>
-                                    </div> */}
+                                    
                                 </div>
 
-                                {/* <div className="item">
-                                    <h3 className="level-title">Javascript &amp; jQuery</h3>
-                                    <div className="progress level-bar">
-                                        <div className="progress-bar theme-progress-bar" role="progressbar" style={{ width: '98%' }}></div>
-                                    </div>
-                                </div>
-
-                                <div className="item">
-                                    <h3 className="level-title">Angular</h3>
-                                    <div className="progress level-bar">
-                                        <div className="progress-bar theme-progress-bar" role="progressbar" style={{ width: '95%' }}></div>
-                                    </div>
-                                </div>
-
-                                <div className="item">
-                                    <h3 className="level-title">HTML5 &amp; CSS</h3>
-                                    <div className="progress level-bar">
-                                        <div className="progress-bar theme-progress-bar" role="progressbar" style={{ width: '98%' }}></div>
-                                    </div>
-                                </div>
-
-                                <div className="item">
-                                    <h3 className="level-title">Ruby on Rails</h3>
-                                    <div className="progress level-bar">
-                                        <div className="progress-bar theme-progress-bar" role="progressbar" style={{ width: '85%' }}></div>
-                                    </div>
-                                </div>
-
-                                <div className="item">
-                                    <h3 className="level-title">Sketch &amp; Photoshop</h3>
-                                    <div className="progress level-bar">
-                                        <div className="progress-bar theme-progress-bar" role="progressbar" style={{ width: '66%' }}></div>
-                                    </div>
-                                </div> */}
-
+                               
                             </div>
                         </section>
                     </div>
@@ -433,8 +285,8 @@ export default class Home extends Component {
 
                 <footer className="footer">
                     <div className="text-center">
-                        <p>This application is created in React JS by Naeem Abbas</p>
-                        {/* <small className="copyright">Designed with <i className="fas fa-heart"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small> */}
+                        <p>Resume created using React JS & Firebase by Naeem Abbas</p>
+                        
                     </div>
                 </footer>
             </div>
