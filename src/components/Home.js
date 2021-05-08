@@ -115,7 +115,7 @@ export default class Home extends Component {
                                 <li className="phone">
                                     <i className="fas fa-phone">
                                     </i>
-                                    <a href="tel:0123 456 789"> (92) 348-3460275</a>
+                                    <a href="tel:923483460275"> (92) 348-3460275</a>
                                 </li>
                                 {/* <li className="website"><Link onClick={() => { window.open('https://naeemabbas7247.github.io/online_resume/') }}>https://naeemabbas7247.github.io/online_resume/</Link></li> */}
                                 <li className="linkedin">
