@@ -285,7 +285,7 @@ export default class Home extends Component {
 
                 <footer className="footer">
                     <div className="text-center">
-                        <p>Resume is created using React.js & Firebase by Naeem Abbas</p>
+                        <p>Application is created using React.js & Firebase by Naeem Abbas</p>
                         
                     </div>
                 </footer>
