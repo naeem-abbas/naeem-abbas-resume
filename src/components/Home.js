@@ -127,8 +127,14 @@ export default class Home extends Component {
                                     <i className="fab fa-github"></i>
                                     <Link to="" onClick={() => { window.open("https://www.github.com/naeem-abbas") }}>
                                         {' '}
-                                    github.com/naeem-abbas</Link></li>
-                                {/* <li className="twitter"><i className="fab fa-twitter"></i><a href="https://twitter.com/3rdwave_themes" target="_blank">@twittername</a></li> */}
+                                    github.com/naeem-abbas</Link>
+                                </li>
+                                <li className="github">
+                                    <i className="fas fa-file-download"></i>
+                                    {' '}
+                                    <Link style={{textDecoration:'none',borderRadius:4 ,color:'#42A8C0',backgroundColor:'white',padding:2}} to="" onClick={() => { window.open("https://firebasestorage.googleapis.com/v0/b/naeem-abbas-resume.appspot.com/o/resume-naeem-abbas%2FNaeem%20Abbas.pdf?alt=media&token=c1b1197b-f88f-4dd3-bca3-72507521e66e") }}>
+                                   Download My Resume</Link>
+                                </li>
                             </ul>
                         </div>
                         <div className="education-container container-block">
